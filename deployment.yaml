@@ -1,0 +1,32 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: jsm
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: jsm
+    spec:
+      containers:
+        - name: jsm
+          image: jsm:1.0.0
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8080
+          env:
+            - name: JDBC_URL
+              value: jdbc:oracle:thin:@192.168.125.117:1521:orcl
+            - name: JDBC_USER
+              value: jsm
+            - name: JDBC_PWD
+              value: anNt
+            - name: SERVICE_URL
+              value: http://22.188.197.234:61205/fbasic/
+            - name: SUPER_POS_URL
+              value: http://22.188.197.234:61205/fbasic/
+            - name: ENCRY_MACHINE_IP
+              value: '22.188.41.19'
+            - name: ENCRY_MACHINE_PORT
+              value: '8'
